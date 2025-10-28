@@ -16,10 +16,9 @@ function dividereFunction(num1, num2) {
 }
 
 // 2. Variables to update calculator display.
-let numberOne;
-let numberTwo;
-let operator;
-
+let numberOne = "";
+let numberTwo = "";
+let operator = "";
 // 3. We make an object of the operator functions.
 
 const operatorObject = {
@@ -36,12 +35,50 @@ function operate(operator, num1, num2) {
 console.log(operate("*", 10, 4));
 
 // Function that populates display when buttons are clicked.
+const display = document.querySelector('.displaycontainer');
 const keyDigit = document.querySelector('.container');
 keyDigit.addEventListener("click", (e) => {
-   if (e.target.classList.contains("digit")) {
-    const value = e.target.dataset.value;
-    console.log(value);
-   }
+    const button = e.target.closest("button");
+    if (!button) return;
 
-});
+    if (operator === "") {
+    if (button.classList.contains("digit")) {
+     numberOne += button.dataset.value;
+    display.textContent = numberOne;
+    }
+}
+    
+
+    if (operator !== "") {
+    if (button.classList.contains("digit")) {
+        numberTwo += button.dataset.value;
+        display.textContent = numberTwo;
+    }
+}
+
+   if (e.target.classList.contains("operator")) {
+        operator = e.target.dataset.value;
+        display.textContent = operator;
+}
+
+if (e.target.classList.contains("clear")) {
+    display.innerHTML = "";
+    numberOne = "";
+    numberTwo = "";
+    operator = "";
+}
+
+if (e.target.classList.contains("equals")) {
+    let result = operate(operator, Number(numberOne), Number(numberTwo));
+    display.textContent = result;
+    }
+})
+
+    
+    
+    
+    
+
+
+
 
