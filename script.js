@@ -69,10 +69,20 @@ if (e.target.classList.contains("clear")) {
 }
 
 if (e.target.classList.contains("equals")) {
+    if (numberTwo !== "") {
+        if (operator === "/" && Number(numberTwo) === 0) {
+            display.textContent = "ERROR: Cant divide number by 0";
+         } else {
     let result = operate(operator, Number(numberOne), Number(numberTwo));
+    result = Math.round(result*100) / 100;
     display.textContent = result;
+         }
+    } else { 
+        alert("Choose a second number to calculate");
     }
+}
 })
+
 
     
     
