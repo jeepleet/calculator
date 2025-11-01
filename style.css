@@ -1,0 +1,23 @@
+.container {
+   display: flex;
+   border: 10px solid black;
+   flex-wrap: wrap;
+   width: 600px;
+   gap: 0px;
+   margin: auto;
+   justify-content: center;
+   align-items: center;
+   
+    
+}
+
+.displaycontainer {
+    display: flex;
+    justify-content: center;
+    font-size: x-large
+    
+}
+
+h1 {
+    text-align: center;
+}

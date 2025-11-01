@@ -19,6 +19,7 @@ function dividereFunction(num1, num2) {
 let numberOne = "";
 let numberTwo = "";
 let operator = "";
+let justCalculated = "";
 // 3. We make an object of the operator functions.
 
 const operatorObject = {
@@ -45,20 +46,29 @@ keyDigit.addEventListener("click", (e) => {
     if (button.classList.contains("digit")) {
      numberOne += button.dataset.value;
     display.textContent = numberOne;
+    console.log("numberone", numberOne)
     }
 }
     
 
-    if (operator !== "") {
+    if (operator !== "") { 
     if (button.classList.contains("digit")) {
         numberTwo += button.dataset.value;
         display.textContent = numberTwo;
+        console.log("numbertwo",numberTwo)
     }
 }
 
    if (e.target.classList.contains("operator")) {
+    if (numberTwo !== "") {
+       let calChain = operate(operator, Number(numberOne), Number(numberTwo));
+       numberOne = calChain;
+       numberTwo = "";
+       display.textContent = calChain;
+    }
         operator = e.target.dataset.value;
         display.textContent = operator;
+        console.log(operator)
 }
 
 if (e.target.classList.contains("clear")) {
@@ -76,10 +86,19 @@ if (e.target.classList.contains("equals")) {
     let result = operate(operator, Number(numberOne), Number(numberTwo));
     result = Math.round(result*100) / 100;
     display.textContent = result;
+    justCalculated = true;
+    if (justCalculated === true) {
+        numberOne = "";
+        numberTwo = "";
+        operator = "";
+        
+    }
          }
+
     } else { 
         alert("Choose a second number to calculate");
     }
+
 }
 })
 
